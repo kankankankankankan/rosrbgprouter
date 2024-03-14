@@ -3,27 +3,27 @@ apt update
 apt install bird2 -y
 
 echo "开始下载 clash meta"
-wget https://github.com/MetaCubeX/Clash.Meta/releases/download/v1.15.1/clash.meta-linux-amd64-compatible-v1.15.1.gz
+wget https://github.com/MetaCubeX/mihomo/releases/download/v1.18.1/mihomo-linux-amd64-compatible-v1.18.1.gz
 echo "clash premium 下载完成"
 
 echo "开始解压"
-gunzip clash.meta-linux-amd64-compatible-v1.15.1.gz
+gunzip mihomo-linux-amd64-compatible-v1.18.1.gz
 echo "解压完成"
 
 echo "开始重命名"
-mv clash.meta-linux-amd64-compatible-v1.15.1 clash
+mv mihomo-linux-amd64-compatible-v1.18.1 mihomo
 echo "重命名完成"
 
 echo "开始添加执行权限"
-chmod u+x clash
+chmod u+x mihomo
 echo "执行权限添加完成"
 
 echo "开始创建 /etc/clash 目录"
-sudo mkdir /etc/clash
+sudo mkdir /etc/mihomo
 echo "/etc/clash 目录创建完成"
 
 echo "开始复制 clash 到 /usr/local/bin"
-sudo cp clash /usr/local/bin
+sudo cp mihomo /usr/local/bin
 echo "复制完成"
 
 echo "开始安装docker"
@@ -41,15 +41,15 @@ echo "转发设置完成"
 
 echo "开始创建 systemd 服务"
 
-sudo tee /etc/systemd/system/clash.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/mihomo.service > /dev/null <<EOF
 [Unit]
-Description=Clash daemon, A rule-based proxy in Go.
+Description=mihomo daemon, A rule-based proxy in Go.
 After=network.target
 
 [Service]
 Type=simple
 Restart=always
-ExecStart=/usr/local/bin/clash -d /etc/clash
+ExecStart=/usr/local/bin/mihomo -d /etc/clash
 
 [Install]
 WantedBy=multi-user.target
